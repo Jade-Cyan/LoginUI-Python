@@ -40,13 +40,14 @@ block.pack_propagate(False)  # 关键：不让内容压扁它
 block.pack(side="right", padx=10, pady=10)
 
 # uid 文字 + 输入框
-ctk.CTkLabel(block, text="uid:", font=("微软雅黑", 14)).place(x=70, y=100)
-enter_uid = ctk.CTkEntry(block, width=300, font=("微软雅黑", 14),fg_color="white",text_color="black")
+x = 10
+ctk.CTkLabel(block, text="uid:", font=("微软雅黑", x)).place(x=70, y=100)
+enter_uid = ctk.CTkEntry(block, width=300, font=("微软雅黑", x), fg_color="white", text_color="black")
 enter_uid.place(x=65, y=125)
 
 # 密码文字 + 输入框
-ctk.CTkLabel(block, text="password:", font=("微软雅黑", 14)).place(x=70, y=220)
-enter_pass = ctk.CTkEntry(block, width=300, font=("微软雅黑", 14),show="*",fg_color="white",text_color="black")
+ctk.CTkLabel(block, text="password:", font=("微软雅黑", x)).place(x=70, y=220)
+enter_pass = ctk.CTkEntry(block, width=300, font=("微软雅黑", x), show="*", fg_color="white", text_color="black")
 enter_pass.place(x=65, y=245)
 
 check_var = ctk.IntVar()
@@ -55,7 +56,7 @@ def whether_can_see():
         enter_pass.configure(show="")
     elif check_var.get() == 0:
         enter_pass.configure(show="*")
-checkbox = ctk.CTkCheckBox(block, text="whether can see or not", variable=check_var,command=whether_can_see)
+checkbox = ctk.CTkCheckBox(block, text="whether can see or not",variable=check_var,command=whether_can_see)
 checkbox.place(x=65,y=280)
 
 # 登录按钮
