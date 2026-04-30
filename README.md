@@ -8,10 +8,12 @@
 - 浅色/深色主题切换
 - 简洁美观的界面
 - 登录输入框可隐藏
+- 可以将.jpg和.png的单个文件作为GUI背景
 
 ## 运行方法
 1. 安装依赖
    pip install customtkinter
+   pip install pillow
 
 2. 运行
    python main.py
