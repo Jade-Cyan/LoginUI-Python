@@ -1,4 +1,6 @@
 import customtkinter as ctk
+from PIL import Image
+import os
 
 #——————————函数定义—————————————
 # 登录函数
@@ -64,6 +66,39 @@ tk = ctk.CTk()
 tk.title("LogOn-system")
 tk.geometry(f"{width}x{height}")
 tk.resizable(False, False)
+
+# 背景
+def get_all_img_files(folder_path):
+    # 存图片绝对路径
+    img_list = []
+    # 允许的后缀
+    suffixs = (".jpg", ".png", ".JPG", ".PNG")
+
+    # 遍历文件夹所有文件
+    for file in os.listdir(folder_path):
+        # 拼接完整路径
+        full_path = os.path.join(folder_path, file)
+        # 只判断文件，不是文件夹
+        if os.path.isfile(full_path):
+            # 判断后缀
+            if file.lower().endswith(suffixs):
+                # 转绝对路径
+                abs_p = os.path.abspath(full_path)
+                img_list.append(abs_p)
+    return img_list
+
+
+# 要扫描的文件夹路径
+target_folder = "background"  #背景图片的文件夹路径
+
+# 获取所有图片绝对路径列表
+imgs = get_all_img_files(target_folder)
+bg_img = Image.open(imgs[0])  # 选择第一张图片作为背景
+bg_img = bg_img.resize((width, height), Image.Resampling.LANCZOS)
+bg_photo = ctk.CTkImage(bg_img,size=(width, height))
+bg_label = ctk.CTkLabel(tk, image=bg_photo, text="")
+bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+
 
 # 右侧白色方块（完美固定大小）
 block = ctk.CTkFrame(
